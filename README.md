@@ -17,3 +17,5 @@ dependencies {
    	implementation 'com.github.smzh745:DeviceAdminLib:1.0.0'
 	}
 </code></pre>
+
+# How does it works
