@@ -20,9 +20,25 @@ dependencies {
 
 # How does it works
 <b> context => your application context </b>
-<p>For activating device admin use the below code: </p>
 
+<p>For activating device admin use the below code: </p>
 <pre><code>
         DeviceAdminCall.getInstance(context).activateAdmin();
+</code></pre>
+
+
+<p>For deactivating device admin use the below code: </p>
+<pre><code>
+        DeviceAdminCall.getInstance(context).deactivateAdmin();
+</code></pre>
+
+<p>To lock the screen use the below code: </p>
+<pre><code>
+        DeviceAdminCall.getInstance(context).deviceLock();
+</code></pre>
+
+<p>To erase the data use the below code: </p>
+<pre><code>
+        DeviceAdminCall.getInstance(context).eraseData();
 </code></pre>
 
