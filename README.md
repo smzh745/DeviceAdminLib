@@ -14,7 +14,7 @@ Step 2. Add the dependency
 </p>
 <pre><code>
 dependencies {
-   	implementation 'com.github.smzh745:DeviceAdminLib:1.0.0'
+   	implementation 'com.github.smzh745:DeviceAdminLib:1.0.1'
 	}
 </code></pre>
 
