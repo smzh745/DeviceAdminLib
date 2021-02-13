@@ -1,0 +1,3 @@
+include ':deviceadminlibrary'
+include ':app'
+rootProject.name = "Device Admin Lib"
