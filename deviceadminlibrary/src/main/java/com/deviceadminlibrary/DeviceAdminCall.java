@@ -1,5 +1,6 @@
 package com.deviceadminlibrary;
 
+import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -13,16 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DeviceAdminCall {
     private DevicePolicyManager dpm;
     private ComponentName mDeviceAdminSample;
-    private static Context mCtx;
+    private static Activity mCtx;
     private static DeviceAdminCall mInstance;
 
-    private DeviceAdminCall(Context context) {
+    private DeviceAdminCall(Activity context) {
         mCtx = context;
         mDeviceAdminSample = new ComponentName(mCtx, DeviceAdminReceiver.class);
         dpm = (DevicePolicyManager) mCtx.getSystemService(Context.DEVICE_POLICY_SERVICE);
     }
 
-    public static synchronized DeviceAdminCall getInstance(Context context) {
+    public static synchronized DeviceAdminCall getInstance(Activity context) {
         if (mInstance == null) {
             mInstance = new DeviceAdminCall(context);
         }
@@ -39,7 +40,7 @@ public class DeviceAdminCall {
     }
 
     public void eraseData() {
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+/*        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which) {
@@ -62,7 +63,12 @@ public class DeviceAdminCall {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(mCtx);
         builder.setMessage("Are you sure you want to erase data?").setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
+                .setNegativeButton("No", dialogClickListener).show();*/
+        if (dpm.isAdminActive(mDeviceAdminSample)) {
+            dpm.wipeData(1);
+        } else {
+            showToast("Please enable device admin permission first!");
+        }
 
     }
 
@@ -72,7 +78,7 @@ public class DeviceAdminCall {
             intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDeviceAdminSample);
             intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
                     "For Erase data,Lock Phone and Password Change");
-            ((AppCompatActivity) mCtx).startActivityForResult(intent, 15);
+            mCtx.startActivityForResult(intent, 15);
 
 
         }
