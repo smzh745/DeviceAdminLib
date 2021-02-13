@@ -19,3 +19,10 @@ dependencies {
 </code></pre>
 
 # How does it works
+<b> context => your application context </b>
+<p>For activating device admin use the below code: </p>
+
+<pre><code>
+        DeviceAdminCall.getInstance(context).activateAdmin();
+</code></pre>
+
